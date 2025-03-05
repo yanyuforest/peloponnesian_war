@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伯罗奔尼撒战争 - 交互式历史地图</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- 添加Three.js库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+    
+    <!-- SEO相关meta标签 -->
+    <meta name="description" content="伯罗奔尼撒战争(公元前431-前404年)历史事件可视化展示">
+    <meta name="keywords" content="伯罗奔尼撒战争,古希腊历史,雅典,斯巴达,历史可视化">
+    
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>伯罗奔尼撒战争</h1>
+            <h2>公元前431年至公元前404年</h2>
+        </header>
+        
+        <div class="timeline-container card">
+            <div class="year-display">
+                <span id="current-year">公元前431年</span>
+                <span class="year-label">战争第1年</span>
+            </div>
+            <div class="timeline">
+                <input type="range" id="year-slider" min="-431" max="-404" value="-431" step="1">
+            </div>
+            <div class="buttons">
+                <button id="play-btn" class="btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M8 5v14l11-7z"/>
+                    </svg>
+                    播放
+                </button>
+                <button id="prev-year" class="btn">上一年</button>
+                <button id="next-year" class="btn">下一年</button>
+                <button id="view-toggle" class="btn">切换3D视图</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <aside class="sidebar card">
+                <h3>重要事件</h3>
+                <div id="events-list" class="events-container">
+                    <!-- 事件列表将通过JavaScript动态填充 -->
+                </div>
+                
+                <div class="filter-controls">
+                    <h3>过滤选项</h3>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" checked data-filter="battles"> 战役
+                        </label>
+                        <label>
+                            <input type="checkbox" checked data-filter="diplomacy"> 外交
+                        </label>
+                        <label>
+                            <input type="checkbox" checked data-filter="politics"> 政治
+                        </label>
+                    </div>
+                </div>
+            </aside>
+            
+            <section class="visualization-container">
+                <div id="war-map" class="map-container">
+                    <!-- 2D地图 -->
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="color-box athens"></div>
+                            <span>雅典及盟国</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="color-box sparta"></div>
+                            <span>斯巴达及盟国</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="color-box neutral"></div>
+                            <span>中立城邦</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="color-box battle"></div>
+                            <span>主要战役</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="color-box route"></div>
+                            <span>军队行进路线</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="3d-container">
+                    <!-- 3D视图将通过JavaScript动态生成 -->
+                </div>
+            </section>
+        </div>
+        
+        <footer class="card">
+            <p>伯罗奔尼撒战争可视化项目 &copy; 2023 | 数据来源：修昔底德《伯罗奔尼撒战争史》</p>
+            <div class="references">
+                <a href="#" id="show-references">历史参考资料</a>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 模态框 -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content card">
+            <span class="close-btn">&times;</span>
+            <h3 id="modal-title">战役详情</h3>
+            <div id="modal-content">
+                <!-- 动态内容将在这里显示 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 参考资料模态框 -->
+    <div id="references-modal" class="modal">
+        <div class="modal-content card">
+            <span class="close-btn">&times;</span>
+            <h3>历史参考资料</h3>
+            <ul class="references-list">
+                <li>修昔底德《伯罗奔尼撒战争史》</li>
+                <li>普鲁塔克《希腊罗马名人传》</li>
+                <li>唐纳德·卡根《伯里克利时代》</li>
+                <li>Victor Davis Hanson《伯罗奔尼撒战争》</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
